@@ -20,7 +20,16 @@ class RegisteredUserController extends Controller
      */
     public function create(): View
     {
-        return view('auth.register');
+        $title = "iMaster";
+        $subtitle = "iMaster Auth SignIn";
+        $menu = "iMaster Auth";
+        $submenu = "Registration";
+        return view('cms.auth.auth-signup', compact([
+            'title',
+            'subtitle',
+            'menu',
+            'submenu',
+        ]));
     }
 
     /**
@@ -33,13 +42,15 @@ class RegisteredUserController extends Controller
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'phone' => ['required', 'string', 'max:13', 'unique:'.User::class],
+            // 'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => Hash::make($request->password),
+            'phone' => $request->phone,
+            'password' => Hash::make($request->phone),
         ]);
 
         event(new Registered($user));

@@ -17,7 +17,16 @@ class AuthenticatedSessionController extends Controller
      */
     public function create(): View
     {
-        return view('auth.login');
+        $title = "iMaster";
+        $subtitle = "iMaster Auth SignIn";
+        $menu = "iMaster Auth";
+        $submenu = "Registration";
+        return view('cms.auth.auth-signin', compact([
+            'title',
+            'subtitle',
+            'menu',
+            'submenu',
+        ]));
     }
 
     /**
