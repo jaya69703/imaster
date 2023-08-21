@@ -18,7 +18,7 @@
     <link href="{{ asset('main') }}/layouts/vertical-dark-menu/css/light/plugins.css" rel="stylesheet" type="text/css" />
     <link href="{{ asset('main') }}/layouts/vertical-dark-menu/css/dark/plugins.css" rel="stylesheet" type="text/css" />
     <!-- END GLOBAL MANDATORY STYLES -->
-    
+
     <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM STYLES -->
     <link rel="stylesheet" type="text/css" href="{{ asset('main') }}/src/assets/css/light/elements/alert.css">
     <link rel="stylesheet" type="text/css" href="{{ asset('main') }}/src/assets/css/dark/elements/alert.css">
@@ -26,7 +26,7 @@
     <link href="{{ asset('main') }}/src/assets/css/light/scrollspyNav.css" rel="stylesheet" type="text/css" />
     <link href="{{ asset('main') }}/src/assets/css/dark/scrollspyNav.css" rel="stylesheet" type="text/css" />
 
-    
+
     <link rel="stylesheet" href="{{ asset('main') }}/src/plugins/src/sweetalerts2/sweetalerts2.css">
     <link href="{{ asset('main') }}/src/plugins/css/light/sweetalerts2/custom-sweetalert.css" rel="stylesheet" type="text/css" />
     <link href="{{ asset('main') }}/src/plugins/css/dark/sweetalerts2/custom-sweetalert.css" rel="stylesheet" type="text/css" />
@@ -42,7 +42,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('main') }}/src/plugins/css/dark/table/datatable/dt-global_style.css">
     <link rel="stylesheet" type="text/css" href="{{ asset('main') }}/src/plugins/css/dark/table/datatable/custom_dt_custom.css">
 
-    
+
     <link href="{{ asset('main') }}/src/assets/css/light/components/media_object.css" rel="stylesheet" type="text/css">
     <link href="{{ asset('main') }}/src/assets/css/dark/components/media_object.css" rel="stylesheet" type="text/css">
 
@@ -51,15 +51,15 @@
 
     <link rel="stylesheet" href="{{ asset('main') }}/vendor/fas/css/all.min.css">
 
-    
+
     <!-- END PAGE LEVEL PLUGINS/CUSTOM STYLES -->
-    
+
     <style>
         body.dark .layout-px-spacing, .layout-px-spacing {
             min-height: calc(100vh - 155px) !important;
         }
     </style>
-    
+
 </head>
 <body class="layout-boxed" page="starter-pack">
 
@@ -77,7 +77,7 @@
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon dark-mode"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun light-mode"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
             </a>
-            
+
             <a href="javascript:void(0);" class="sidebarCollapse">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
             </a>
@@ -100,7 +100,7 @@
                                 <img src="{{ asset('storage/images/profile/'. Auth::user()->image) }}" class="img-fluid me-2" alt="avatar">
                                 <div class="media-body">
                                     <h5>{{ Auth::user()->name }}</h5>
-                                    <p>{{ Auth::user()->user_position }}</p>
+                                    <p>{{ Auth::user()->position->name }}</p>
                                 </div>
                             </div>
                         </div>
@@ -130,10 +130,10 @@
                             </a>
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                 @csrf
-                            </form>                       
+                            </form>
                         </div>
                     </div>
-                    
+
                 </li>
                 @endauth
                 @guest
@@ -162,7 +162,7 @@
                             </a>
                         </div>
                     </div>
-                    
+
                 </li>
                 @endguest
             </ul>
@@ -178,7 +178,7 @@
 
         <!--  BEGIN SIDEBAR  -->
         <div class="sidebar-wrapper sidebar-theme">
-            
+
             <nav id="sidebar">
 
                 <div class="navbar-nav theme-brand flex-row  text-center">
@@ -208,7 +208,7 @@
                     <li class="menu {{ request()->is('home/profile') ? 'active' : '' }}">
                         <a href="{{ url('/home/profile') }}" aria-expanded="false" class="dropdown-toggle">
                             <div class="d-flex align-items-center justify-content-between">
-                                <i class="fa-solid fa-school-circle-check" style="font-size: 20px; margin-right: 10px;" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ></i>                                
+                                <i class="fa-solid fa-school-circle-check" style="font-size: 20px; margin-right: 10px;" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ></i>
                                 <span>Profile User</span>
                             </div>
                         </a>
@@ -223,7 +223,7 @@
                     <li class="menu {{ Str::is('home/profile-dosen*', request()->path()) ? 'active' : '' }}">
                         <a href="{{ url('/home/profile-dosen') }}" aria-expanded="false" class="dropdown-toggle">
                             <div class="d-flex align-items-center justify-content-between">
-                                <i class="fa-solid fa-users-rectangle" style="font-size: 20px; margin-right: 10px;" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ></i>                                
+                                <i class="fa-solid fa-users-rectangle" style="font-size: 20px; margin-right: 10px;" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ></i>
                                 <span>Daftar Dosen</span>
                             </div>
                         </a>
@@ -231,54 +231,45 @@
                     <li class="menu {{ Str::is('home/struktur-organisasi*', request()->path()) ? 'active' : '' }}">
                         <a href="{{ url('/home/struktur-organisasi') }}" aria-expanded="false" class="dropdown-toggle">
                             <div class="d-flex align-items-center justify-content-between">
-                                <i class="fa-solid fa-users-rectangle" style="font-size: 20px; margin-right: 10px;" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ></i>                                
+                                <i class="fa-solid fa-users-rectangle" style="font-size: 20px; margin-right: 10px;" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ></i>
                                 <span>Struktur Organisasi</span>
                             </div>
                         </a>
                     </li>
                     @endguest
-                    
+
                     @auth
                     <li class="menu menu-heading">
                         <div class="heading"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus"><line x1="5" y1="12" x2="19" y2="12"></line></svg><span>DASHBOARD ADMIN</span></div>
                     </li>
 
 
-                    <li class="menu {{ Str::is('admin/usermanage*', request()->path()) ? 'active' : '' }}">
-                        <a href="{{ url('/admin/usermanage') }}" aria-expanded="false" class="dropdown-toggle">
-                            <div class="d-flex align-items-center justify-content-between">
-                                <i class="fa-solid fa-users" style="font-size: 20px; margin-right: 10px;" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ></i>                                
-                                <span>User Manager</span>
-                            </div>
-                        </a>
-                    </li>
-                    @endauth
-
-                    <li class="menu menu-heading">
-                        <div class="heading"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus"><line x1="5" y1="12" x2="19" y2="12"></line></svg><span>MENU LEVELS</span></div>
-                    </li>
-
-                    <li class="menu">
+                    <li class="menu {{ Str::is('admin/usermanage*', request()->path()) || Str::is('admin/position*', request()->path()) || Str::is('admin/overtimes*', request()->path()) ? 'active' : '' }}">
                         <a href="#home" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
                             <div class="">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-hash"><line x1="4" y1="9" x2="20" y2="9"></line><line x1="4" y1="15" x2="20" y2="15"></line><line x1="10" y1="3" x2="8" y2="21"></line><line x1="16" y1="3" x2="14" y2="21"></line></svg>
-                                <span>Level 1</span>
+                                <span>Human Resource</span>
                             </div>
                             <div>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg>
                             </div>
                         </a>
                         <ul class="collapse submenu list-unstyled" id="home" data-bs-parent="#accordionExample">
-                            <li>
-                                <a href="javascript:void(0);"> Level 2a </a>
+                            <li class="{{ Str::is('admin/usermanage*', request()->path()) ? 'active' : '' }}">
+                                <a href="{{ url('/admin/usermanage') }}"> User Manager </a>
                             </li>
-                            <li>
-                                <a href="javascript:void(0);"> Level 2b </a>
+                            <li class="{{ Str::is('admin/position*', request()->path()) ? 'active' : '' }}">
+                                <a href="{{ url('/admin/position') }}"> Position Manager </a>
+                            </li>
+                            <li class="{{ Str::is('admin/overtimes*', request()->path()) ? 'active' : '' }}">
+                                <a href="{{ url('/admin/overtimes') }}"> Overtimes Manager </a>
                             </li>
 
-                            <li>
-                                <a href="#level-three" data-bs-toggle="collapse" aria-expanded="false" class="dropdown-toggle collapsed"> Level 2c <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg> </a>
-                                <ul class="collapse list-unstyled sub-submenu" id="level-three" data-bs-parent="#pages"> 
+                            <li class="dropdown-toggle">
+                                <a href="#level-three" data-bs-toggle="collapse" aria-expanded="false" class="">
+                                    Level 2c <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                                </a>
+                                <ul class="collapse list-unstyled sub-submenu" id="level-three" data-bs-parent="#pages">
                                     <li>
                                         <a href="javascript:void(0);"> Level 3a </a>
                                     </li>
@@ -292,14 +283,20 @@
                             </li>
                         </ul>
                     </li>
+                    @endauth
+
+                    <li class="menu menu-heading">
+                        <div class="heading"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus"><line x1="5" y1="12" x2="19" y2="12"></line></svg><span>MENU LEVELS</span></div>
+                    </li>
+
 
                 </ul>
-                
+
             </nav>
 
         </div>
         <!--  END SIDEBAR  -->
-        
+
         <!--  BEGIN CONTENT AREA  -->
         <div id="content" class="main-content">
             <div class="layout-px-spacing">
@@ -315,8 +312,8 @@
                             </ol>
                         </nav>
                     </div>
-                    <!-- /BREADCRUMB -->    
-    
+                    <!-- /BREADCRUMB -->
+
                     <!-- CONTENT AREA -->
                     @yield('content')
 
@@ -334,7 +331,7 @@
                     <p class="">Coded with <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-heart"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg></p>
                 </div>
             </div>
-            
+
         </div>
         <!--  END CONTENT AREA  -->
     </div>
@@ -345,24 +342,24 @@
     <script src="{{ asset('main') }}/src/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="{{ asset('main') }}/src/plugins/src/perfect-scrollbar/perfect-scrollbar.min.js"></script>
     <script src="{{ asset('main') }}/layouts/vertical-dark-menu/app.js"></script>
-    
-    
+
+
     <script src="{{ asset('main') }}/src/assets/js/custom.js"></script>
     <link href="{{ asset('main') }}/layouts/vertical-dark-menu/css/light/plugins.css" rel="stylesheet" type="text/css" />
     <link href="{{ asset('main') }}/layouts/vertical-dark-menu/css/dark/plugins.css" rel="stylesheet" type="text/css" />
-    
+
     <script src="{{ asset('main') }}/src/plugins/src/sweetalerts2/sweetalerts2.min.js"></script>
     <script src="{{ asset('main') }}/src/plugins/src/table/datatable/datatables.js"></script>
-    
+
     <script src="{{ asset('main') }}/src/plugins/src/highlight/highlight.pack.js"></script>
 
     <script src="{{ asset('main') }}/src/plugins/src/glightbox/glightbox.min.js"></script>
     <script src="{{ asset('main') }}/src/plugins/src/glightbox/custom-glightbox.min.js"></script>
-    
+
     <script>
         function logout(event) {
             event.preventDefault();
-    
+
             Swal.fire({
                 title: 'Are you sure?',
                 text: 'You will be logged out!',
@@ -385,7 +382,7 @@
         }
     </script>
     <script>
-        
+
         function deleteData(id) {
             Swal.fire({
                 title: 'Are you sure?',
@@ -420,15 +417,15 @@
 
     <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
     <script>
-        
+
         // Mendapatkan elemen-elemen yang dibutuhkan
         const imageInput = document.getElementById('image');
         const imagePreview = document.getElementById('image-preview');
         const resetButton = document.getElementById('reset-button');
-        
+
         // Simpan URL gambar awal sebagai nilai default
         const defaultImageSrc = imagePreview.src;
-        
+
         // Fungsi untuk menampilkan pratinjau gambar
         function showImagePreview(file) {
             if (file) {
@@ -439,13 +436,13 @@
                 reader.readAsDataURL(file);
             }
         }
-        
+
         // Event listener ketika gambar diubah di input file
         imageInput.addEventListener('change', function () {
             const selectedFile = this.files[0];
             showImagePreview(selectedFile);
         });
-        
+
         // Event listener untuk tombol reset
         resetButton.addEventListener('click', function () {
             // Kembalikan gambar ke gambar awal
@@ -517,9 +514,23 @@
           xmlhttp.send();
         }
     </script>
+    <script>
+        const dateInput = document.getElementById('date_1');
+        const monthInput = document.getElementById('month_1');
+        const yearInput = document.getElementById('year_1');
+
+        dateInput.addEventListener('change', function() {
+            const selectedDate = new Date(dateInput.value);
+            const selectedMonth = selectedDate.getMonth() + 1; // Months are 0-based
+            const selectedYear = selectedDate.getFullYear();
+
+            // Set hidden inputs
+            monthInput.value = selectedMonth;
+            yearInput.value = selectedYear;
+        });
+    </script>
 
 
-
-    <!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
+<!-- BEGIN PAGE LEVEL PLUGINS/CUSTOM SCRIPTS -->
 </body>
 </html>

@@ -27,9 +27,9 @@
                             @foreach($user as $key => $item)
                             <tr>
                                 <td class="checkbox-column text-center"> {{ ++$key }} </td>
-                                <td> {{ $item->name }} </td>
-                                <td> {{ $item->user_position }} </td>
-                                <td> {{ $item->email }} </td>
+                                <td class="text-center"> {{ $item->name }} </td>
+                                <td class="text-center"> {{ $item->position->name }} </td>
+                                <td class="text-center"> {{ $item->email }} </td>
                                 <td class="text-center"> {{ $item->user_phone }} </td>
                                 <td class="text-center d-flex justify-content-center align-items-center">
                                     <a style="margin-right: 10px;" href="{{ route('usermanage.show', $item->id) }}" class="btn btn-rounded btn-outline-primary"><i class="fa-solid fa-eye"></i></a>

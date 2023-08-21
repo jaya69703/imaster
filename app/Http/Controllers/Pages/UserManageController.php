@@ -15,13 +15,15 @@ class UserManageController extends Controller
      */
     public function index()
     {
-        $title = 'imFeels';
-        $menu = 'User Manager';
-        $submenu = 'Daftar User';
+        $title = 'iMaster';
+        $subtitle = 'iMaster User Management';
+        $menu = 'User Management';
+        $submenu = 'User Index';
         $user = User::all();
 
         return view('pages.usermanage.usermanage-index', compact(
             'title',
+            'subtitle',
             'menu',
             'submenu',
             'user',
@@ -34,16 +36,18 @@ class UserManageController extends Controller
     public function create()
     {
         $user = User::all();
-        $title = "ImFeel";
-        $menu = "User Manager";
-        $submenu = "Tambah User";
+        $title = 'iMaster';
+        $subtitle = 'iMaster User Management';
+        $menu = 'User Management';
+        $submenu = "New User";
 
         return view('pages.usermanage.usermanage-create', compact(
             'user',
             'title',
+            'subtitle',
             'menu',
             'submenu',
-        ));  
+        ));
     }
 
     /**
@@ -58,7 +62,7 @@ class UserManageController extends Controller
             } else {
                 $filename = 'default.png'; // Set a default image filename if no image is provided
             }
-    
+
             $user = new User([
                 'name' => $request->input('name'),
                 'user_phone' => $request->input('user_phone'),
@@ -76,13 +80,13 @@ class UserManageController extends Controller
             ]);
 
             $user->save(); // Save the user to the database
-    
+
             return redirect()->route('usermanage.index')->with('success', 'Profil berhasil diperbarui.');
         } catch (\Exception $e) {
             return redirect()->route('usermanage.index')->with('error', 'Terjadi kesalahan saat memperbarui profil.');
         }
     }
-    
+
 
     /**
      * Display the specified resource.
@@ -90,16 +94,18 @@ class UserManageController extends Controller
     public function show(string $id)
     {
         $user = User::findorFail($id);
-        $title = "ImFeel";
-        $menu = "User Manager";
-        $submenu = "Lihat User ". $user->name ;
+        $title = 'iMaster';
+        $subtitle = 'iMaster User Management';
+        $menu = 'User Management';
+        $submenu = "View User ". $user->name ;
 
         return view('pages.usermanage.usermanage-edit', compact(
             'user',
             'title',
+            'subtitle',
             'menu',
             'submenu',
-        ));  
+        ));
     }
 
     /**
@@ -108,17 +114,19 @@ class UserManageController extends Controller
     public function edit(string $id)
     {
         $user = User::findorFail($id);
-        $title = "ImFeel";
-        $menu = "User Manager";
+        $title = 'iMaster';
+        $subtitle = 'iMaster User Management';
+        $menu = 'User Management';
         $submenu = "Edit User ". $user->name ;
 
         return view('pages.usermanage.usermanage-edit', compact(
             'user',
             'title',
+            'subtitle',
             'menu',
             'submenu',
         ));
-         
+
     }
 
     /**
@@ -129,19 +137,19 @@ class UserManageController extends Controller
         try {
             // $userId = Auth::id();
             $user = User::findOrFail($id); // Memanggil 'firstOrFail()' untuk mendapatkan objek user
-    
+
             if($request->hasFile('image')){
                 $oldPhoto = $user->image;
 
                 if ($oldPhoto !== 'default.png' && Storage::disk('public')->exists('images/profile/' . $oldPhoto)) {
                     Storage::disk('public')->delete('images/profile/' . $oldPhoto);
                 }
-                
+
                 $filename = $request->image->getClientOriginalName();
                 $request->image->storeAs('images/profile',$filename,'public');
                 Auth()->user()->update(['image'=>$filename]);
             }
-    
+
             // Update atribut lain
             $user->update([
                 'name' => $request->input('name'),
@@ -156,9 +164,9 @@ class UserManageController extends Controller
                 'user_religion' => $request->input('user_religion'),
                 'user_from' => $request->input('user_from'),
             ]);
-    
+
             $user->save(); // Menyimpan perubahan ke database
-            
+
         } catch (\Exception $e) {
             return redirect()->route('usermanage.index')->with('error', 'Terjadi kesalahan saat memperbarui profil.');
         }

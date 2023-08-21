@@ -18,13 +18,13 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
+        'position_id',
         'name',
         'email',
         'image',
         'password',
         'user_typecard',
         'user_idcard',
-        'user_position',
         'user_from',
         'user_phone',
         'user_gender',
@@ -52,4 +52,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function position() {
+        return $this->belongsTo(Position::class);
+    }
 }

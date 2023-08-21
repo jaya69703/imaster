@@ -25,7 +25,7 @@ return new class extends Migration
             // GENERAL INFO
             $table->string('user_typecard')->nullable();
             $table->string('user_idcard')->nullable();
-            $table->string('user_position')->nullable();
+            // $table->string('user_position')->nullable();
             $table->string('user_from')->nullable();
             $table->string('user_phone')->nullable();
             $table->string('user_gender')->nullable();
@@ -34,6 +34,7 @@ return new class extends Migration
             $table->string('user_datebirth')->nullable();
             $table->rememberToken();
             $table->timestamps();
+
         });
     }
 
@@ -44,4 +45,5 @@ return new class extends Migration
     {
         Schema::dropIfExists('users');
     }
+
 };
