@@ -23,10 +23,11 @@ Route::get('/', function () {
     return redirect()->route('guest-page.index');
 });
 
-Route::get('/home/artikel', [GuestPageController::class, 'Article'])->name('guest-page.article');
-Route::get('/home/struktur-organisasi', [GuestPageController::class, 'index'])->name('guest-page.index');
-Route::get('/home/profile-dosen', [HomeController::class, 'ListUsers'])->name('profile-dosen.index');
-route::get('/home/profile-dosen/show/{id}', [HomeController::class, 'DetailUser'])->name('profile-dosen.show');
+Route::get('/home/artikel', [GuestPageController::class, 'index'])->name('guest-page.index');
+// Route::get('/home/cv', [GuestPageController::class, 'CurriculumVitae'])->name('guest-page.cv');
+// Route::get('/home/struktur-organisasi', [GuestPageController::class, 'index'])->name('guest-page.index');
+// Route::get('/home/profile-dosen', [HomeController::class, 'ListUsers'])->name('profile-dosen.index');
+// route::get('/home/profile-dosen/show/{id}', [HomeController::class, 'DetailUser'])->name('profile-dosen.show');
 
 Route::middleware('auth')->group(function () {
     Route::get('/home/profile', [HomeController::class, 'index'])->name('home.index');

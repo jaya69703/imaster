@@ -26,14 +26,18 @@
                                 @error('name') <div class="invalid-feedback">{{ $message }}</div> @enderror
                             </div>
                             <div class="form-group mt-2">
-                                <label for="user_position">Pilih Jabatan</label>
-                                <select name="user_position" id="user_position" class="form-select @error('user_position') is-invalid @enderror" name="name">
+                                <label for="position_id">Pilih Jabatan</label>
+                                <select name="position_id" id="position_id" class="form-select @error('position_id') is-invalid @enderror" name="name">
+                                    @if(Auth::user()->position_id)
+                                    <option selected>{{ Auth::user()->position->name }}</option>
+                                    @else
+                                    @foreach ( $position as $item )
                                     <option selected disabled>Silahkan Pilih Jabatan</option>
-                                    <option placeholder="Dosen">Dosen</option>
-                                    <option placeholder="Staff">Staff</option>
-
+                                    <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                    @endforeach
+                                    @endif
                                 </select>
-                                @error('user_position') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                                @error('position_id') <div class="invalid-feedback">{{ $message }}</div> @enderror
                             </div>
                             <div class="form-group mt-2">
                                 <label for="phone">Nomor HP ( Whatsapp )</label>

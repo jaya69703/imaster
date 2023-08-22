@@ -6,22 +6,10 @@ use Illuminate\Http\Request;
 
 class GuestPageController extends Controller
 {
+
     public function index()
     {
-        $title = "imFeels";
-        $menu = "Company";
-        $submenu = "Struktur Organisasi";
-
-        return view('pages.struktur-organisasi', compact(
-            'title',
-            'menu',
-            'submenu',
-        ));
-    }
-
-    public function Article()
-    {
-        $title = "imFeels";
+        $title = "iMaster";
         $menu = "Artikel";
         $submenu = "Artikel Terbaru";
 
@@ -31,4 +19,6 @@ class GuestPageController extends Controller
             'submenu',
         ));
     }
+
+
 }

@@ -200,6 +200,17 @@
                 </div>
 
                 <ul class="list-unstyled menu-categories" id="accordionExample">
+
+                    @guest
+                    <li class="menu {{ Str::is('home/artikel*', request()->path()) ? 'active' : '' }}">
+                        <a href="{{ url('/home/artikel') }}" aria-expanded="false" class="dropdown-toggle">
+                            <div class="d-flex align-items-center justify-content-between">
+                                <i class="fa-solid fa-newspaper" style="font-size: 20px; margin-right: 10px;" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ></i>
+                                <span>Article Area</span>
+                            </div>
+                        </a>
+                    </li>
+                    @endguest
                     @auth
                     <li class="menu menu-heading">
                         <div class="heading"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus"><line x1="5" y1="12" x2="19" y2="12"></line></svg><span>DASHBOARD USER</span></div>
@@ -213,32 +224,7 @@
                             </div>
                         </a>
                     </li>
-                    @endauth
 
-
-                    @guest
-                    <li class="menu menu-heading">
-                        <div class="heading"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus"><line x1="5" y1="12" x2="19" y2="12"></line></svg><span>PROFILE PERUSAHAAN</span></div>
-                    </li>
-                    <li class="menu {{ Str::is('home/profile-dosen*', request()->path()) ? 'active' : '' }}">
-                        <a href="{{ url('/home/profile-dosen') }}" aria-expanded="false" class="dropdown-toggle">
-                            <div class="d-flex align-items-center justify-content-between">
-                                <i class="fa-solid fa-users-rectangle" style="font-size: 20px; margin-right: 10px;" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ></i>
-                                <span>Daftar Dosen</span>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="menu {{ Str::is('home/struktur-organisasi*', request()->path()) ? 'active' : '' }}">
-                        <a href="{{ url('/home/struktur-organisasi') }}" aria-expanded="false" class="dropdown-toggle">
-                            <div class="d-flex align-items-center justify-content-between">
-                                <i class="fa-solid fa-users-rectangle" style="font-size: 20px; margin-right: 10px;" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ></i>
-                                <span>Struktur Organisasi</span>
-                            </div>
-                        </a>
-                    </li>
-                    @endguest
-
-                    @auth
                     <li class="menu menu-heading">
                         <div class="heading"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus"><line x1="5" y1="12" x2="19" y2="12"></line></svg><span>DASHBOARD ADMIN</span></div>
                     </li>
@@ -284,10 +270,6 @@
                         </ul>
                     </li>
                     @endauth
-
-                    <li class="menu menu-heading">
-                        <div class="heading"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-minus"><line x1="5" y1="12" x2="19" y2="12"></line></svg><span>MENU LEVELS</span></div>
-                    </li>
 
 
                 </ul>

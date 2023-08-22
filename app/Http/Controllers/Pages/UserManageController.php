@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Position;
 
 class UserManageController extends Controller
 {
@@ -20,6 +21,7 @@ class UserManageController extends Controller
         $menu = 'User Management';
         $submenu = 'User Index';
         $user = User::all();
+        $position = Position::all();
 
         return view('pages.usermanage.usermanage-index', compact(
             'title',
@@ -27,6 +29,7 @@ class UserManageController extends Controller
             'menu',
             'submenu',
             'user',
+            'position',
         ));
     }
 
@@ -40,6 +43,8 @@ class UserManageController extends Controller
         $subtitle = 'iMaster User Management';
         $menu = 'User Management';
         $submenu = "New User";
+        $position = Position::all();
+
 
         return view('pages.usermanage.usermanage-create', compact(
             'user',
@@ -47,6 +52,7 @@ class UserManageController extends Controller
             'subtitle',
             'menu',
             'submenu',
+            'position',
         ));
     }
 
@@ -98,6 +104,7 @@ class UserManageController extends Controller
         $subtitle = 'iMaster User Management';
         $menu = 'User Management';
         $submenu = "View User ". $user->name ;
+        $position = Position::all();
 
         return view('pages.usermanage.usermanage-edit', compact(
             'user',
@@ -105,6 +112,7 @@ class UserManageController extends Controller
             'subtitle',
             'menu',
             'submenu',
+            'position',
         ));
     }
 
@@ -118,6 +126,7 @@ class UserManageController extends Controller
         $subtitle = 'iMaster User Management';
         $menu = 'User Management';
         $submenu = "Edit User ". $user->name ;
+        $position = Position::all();
 
         return view('pages.usermanage.usermanage-edit', compact(
             'user',
@@ -125,6 +134,7 @@ class UserManageController extends Controller
             'subtitle',
             'menu',
             'submenu',
+            'position',
         ));
 
     }

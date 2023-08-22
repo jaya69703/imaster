@@ -48,18 +48,18 @@
                             <button type="submit" class="btn btn-outline-primary btn-rounded"><i class="fa-solid fa-floppy-disk"></i></button>
                         </div>
                     </div>
-                    
+
                     <div class="card-body">
                         <div class="row">
-                            <div class="form-group mt-2 col-lg-6 col-12">
-                                <label for="user_position">Pilih Jabatan</label>
-                                <select name="user_position" id="user_position" class="form-select @error('user_position') is-invalid @enderror" name="name">
+                            <div class="form-group mt-2">
+                                <label for="position_id">Pilih Jabatan</label>
+                                <select name="position_id" id="position_id" class="form-select @error('position_id') is-invalid @enderror" name="name">
                                     <option selected disabled>Silahkan Pilih Jabatan</option>
-                                    <option placeholder="Dosen">Dosen</option>
-                                    <option placeholder="Staff">Staff</option>
-
+                                    @foreach ( $position as $item )
+                                    <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                    @endforeach
                                 </select>
-                                @error('user_position') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                                @error('position_id') <div class="invalid-feedback">{{ $message }}</div> @enderror
                             </div>
                             <div class="form-group mt-2 col-lg-6 col-12">
                                 <label for="user_placebirth">Tempat Lahir</label>

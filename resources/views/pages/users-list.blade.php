@@ -9,7 +9,7 @@
             </a>
             <div class="card-footer">
                 <h5 class="card-title mb-0">{{ $user->name }}</h5>
-                <p class="card-text mb-0">{{ $user->user_position }}</p>
+                <p class="card-text mb-0">{{ $user->position->name }}</p>
             </div>
         </div>
     </div>
