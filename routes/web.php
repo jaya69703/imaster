@@ -24,14 +24,12 @@ Route::get('/', function () {
 });
 
 Route::get('/home/artikel', [GuestPageController::class, 'index'])->name('guest-page.index');
-// Route::get('/home/cv', [GuestPageController::class, 'CurriculumVitae'])->name('guest-page.cv');
-// Route::get('/home/struktur-organisasi', [GuestPageController::class, 'index'])->name('guest-page.index');
-// Route::get('/home/profile-dosen', [HomeController::class, 'ListUsers'])->name('profile-dosen.index');
-// route::get('/home/profile-dosen/show/{id}', [HomeController::class, 'DetailUser'])->name('profile-dosen.show');
 
 Route::middleware('auth')->group(function () {
     Route::get('/home/profile', [HomeController::class, 'index'])->name('home.index');
     Route::post('/home/update-user', [HomeController::class, 'updateUser'])->name('home.update-user');
+    route::post('/home/status/store', [GuestPageController::class, 'saveStatus'])->name('status.store');
+    route::delete('/home/status/delete/{id}', [GuestPageController::class, 'destroy'])->name('status.destroy');
 
     // USER MANAGEMENT ROUTES
     route::get('/admin/usermanage', [UserManageController::class, 'index'])->name('usermanage.index');
@@ -57,9 +55,6 @@ Route::middleware('auth')->group(function () {
     route::get('/admin/overtimes/edit/{id}', [OvertimesController::class, 'edit'])->name('overtimes.edit');
     route::get('/admin/overtimes/show/{id}', [OvertimesController::class, 'show'])->name('overtimes.show');
     route::patch('/admin/overtimes/update/{id}', [OvertimesController::class, 'update'])->name('overtimes.update');
-    // Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    // Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    // Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
 require __DIR__.'/auth.php';
