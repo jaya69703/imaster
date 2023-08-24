@@ -21,7 +21,7 @@ class UserSeeder extends Seeder
             'image' => 'default.png',
             'phone' => '089612345678',
             'password' => Hash::make('Namikaze1'),
-            'position_id' => '1',
+            'position_id' => '2',
         ]);
     }
 }

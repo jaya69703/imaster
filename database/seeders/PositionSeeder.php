@@ -16,6 +16,14 @@ class PositionSeeder extends Seeder
     public function run(): void
     {
         DB::table('positions')->insert([
+            'id' => '1',
+            'name' => 'Pengunjung Situs',
+            'code' => 'VST',
+            'sallary' => '0',
+        ]);
+
+        DB::table('positions')->insert([
+            'id' => '2',
             'name' => 'Web Developer',
             'code' => 'WEB',
             'sallary' => '3000000',

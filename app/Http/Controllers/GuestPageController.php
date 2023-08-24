@@ -15,7 +15,7 @@ class GuestPageController extends Controller
         $title = "iMaster";
         $menu = "Component";
         $submenu = "Widget Creator";
-        $status = Status::all();
+        $status = Status::latest()->get();
 
         return view('pages.article.article-index', compact(
             'title',
@@ -62,8 +62,14 @@ class GuestPageController extends Controller
 
     public function destroy(string $id)
     {
-        $user = Status::findorFail($id);
-        $user->delete();
+        $status = Status::findOrFail($id);
+
+        // Memeriksa apakah pengguna yang sedang masuk adalah pemilik postingan
+        if ($status->user_id !== auth()->user()->id) {
+            return redirect()->route('guest-page.index')->with('error', 'Anda tidak memiliki izin untuk menghapus postingan ini');
+        }
+
+        $status->delete();
 
         return redirect()->route('guest-page.index')->with('success', 'Data berhasil dihapus');
     }
