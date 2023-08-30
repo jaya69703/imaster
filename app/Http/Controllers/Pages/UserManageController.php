@@ -164,6 +164,7 @@ class UserManageController extends Controller
             $user->update([
                 'name' => $request->input('name'),
                 'user_phone' => $request->input('user_phone'),
+                'position_id' => $request->input('position_id'),
                 // 'email' => $request->input('email'),
                 'user_placebirth' => $request->input('user_placebirth'),
                 'user_datebirth' => $request->input('user_datebirth'),

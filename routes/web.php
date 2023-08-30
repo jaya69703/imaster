@@ -4,6 +4,7 @@
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\GuestPageController;
 use App\Http\Controllers\Pages\UserManageController;
+use App\Http\Controllers\Pages\WebSettingController;
 use App\Http\Controllers\Pages\User\PositionController;
 use App\Http\Controllers\Pages\User\OvertimesController;
 use Illuminate\Support\Facades\Route;
@@ -26,6 +27,7 @@ Route::get('/', function () {
 Route::get('/home/artikel', [GuestPageController::class, 'index'])->name('guest-page.index');
 
 Route::middleware('auth')->group(function () {
+    Route::get('/home/dashboard', [HomeController::class, 'dashboard'])->name('home.dashboard');
     Route::get('/home/profile', [HomeController::class, 'index'])->name('home.index');
     Route::post('/home/update-user', [HomeController::class, 'updateUser'])->name('home.update-user');
     route::post('/home/status/store', [GuestPageController::class, 'saveStatus'])->name('status.store');
@@ -39,6 +41,23 @@ Route::middleware('auth')->group(function () {
     route::get('/admin/usermanage/edit/{id}', [UserManageController::class, 'edit'])->name('usermanage.edit');
     route::get('/admin/usermanage/show/{id}', [UserManageController::class, 'show'])->name('usermanage.show');
     route::patch('/admin/usermanage/update/{id}', [UserManageController::class, 'update'])->name('usermanage.update');
+    // DATABASE BACKUP RESTORE SETUP
+    Route::get('/admin/web/backup-db', function () {
+        // Jalankan perintah artisan untuk membuat backup
+        Artisan::call('backup:run');
+        // Dapatkan nama file zip terakhir yang dibuat
+        $latestBackup = collect(Storage::disk('local')->files('laravel-backup'))->last();
+        // Unduh file zip tersebut tanpa mengirim email
+        return Storage::disk('local')->download($latestBackup, null, ['X-Vapor-Base64-Encode' => 'True']);
+    })->name('web.download-db');
+    // WEB MANAGEMENT ROUTES
+    route::get('/admin/web', [WebSettingController::class, 'index'])->name('web.index');
+    route::get('/admin/web/create', [WebSettingController::class, 'create'])->name('web.create');
+    route::post('/admin/web/store', [WebSettingController::class, 'store'])->name('web.store');
+    route::delete('/admin/web/delete/{id}', [WebSettingController::class, 'destroy'])->name('web.destroy');
+    route::get('/admin/web/edit/{id}', [WebSettingController::class, 'edit'])->name('web.edit');
+    route::get('/admin/web/show/{id}', [WebSettingController::class, 'show'])->name('web.show');
+    route::patch('/admin/web/update/{id}', [WebSettingController::class, 'update'])->name('web.update');
     // POSITION MANAGEMENT ROUTES
     route::get('/admin/position', [PositionController::class, 'index'])->name('position.index');
     route::get('/admin/position/create', [PositionController::class, 'create'])->name('position.create');

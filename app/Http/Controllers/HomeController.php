@@ -30,6 +30,21 @@ class HomeController extends Controller
         ));
     }
 
+    public function dashboard()
+    {
+        $title = "iMaster";
+        $menu = "Home";
+        $submenu = "Dashboard";
+        $position = Position::all();
+
+        return view('pages.dashboard', compact(
+            'title',
+            'menu',
+            'submenu',
+            'position',
+        ));
+    }
+
     public function updateUser(Request $request)
     {
         try {

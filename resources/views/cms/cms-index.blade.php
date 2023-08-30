@@ -1,11 +1,13 @@
-
 <!DOCTYPE html>
 <html lang="en">
+    @php
+        $web = App\Models\WebSetting::find(1);
+    @endphp
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
-    <title>{{ $title . (' - ') . $menu }}</title>
+    <title>{{ $web->web_name . (' - ') . $menu }}</title>
     <link rel="icon" type="image/x-icon" href="{{ asset('main') }}/src/assets/img/favicon.ico"/>
     <!-- ENABLE LOADERS -->
     <link href="{{ asset('main') }}/layouts/vertical-dark-menu/css/light/loader.css" rel="stylesheet" type="text/css" />
@@ -186,11 +188,11 @@
                     <div class="nav-logo">
                         <div class="nav-item theme-logo">
                             <a href="{{ url()->current() }}">
-                                <img src="{{ asset('storage/images/default') }}/logo.png" alt="Logo" class="img-fluid" style="max-width: 100px;">
+                                <img src="{{ asset('storage/images/logo/'. $web->web_logo ) }}" alt="Logo" class="img-fluid" style="max-width: 100px;">
                             </a>
                         </div>
                         <div class="nav-item theme-text">
-                            <a href="{{ url()->current() }}" class="nav-link"> {{ $title }} </a>
+                            <a href="{{ url()->current() }}" class="nav-link"> {{ $web->web_name }} </a>
                         </div>
                     </div>
                     <div class="nav-item sidebar-toggle">
@@ -213,6 +215,14 @@
                     </li>
                     @endguest
                     @auth
+                    <li class="menu {{ Str::is('home/dashboard*', request()->path()) ? 'active' : '' }}">
+                        <a href="{{ url('/home/dashboard') }}" aria-expanded="false" class="dropdown-toggle">
+                            <div class="d-flex align-items-center justify-content-between">
+                                <i class="fa-solid fa-gauge" style="font-size: 20px; margin-right: 10px;" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ></i>
+                                <span>Dashboard</span>
+                            </div>
+                        </a>
+                    </li>
                     <li class="menu {{ Str::is('home/artikel*', request()->path()) ? 'active' : '' }}">
                         <a href="{{ url('/home/artikel') }}" aria-expanded="false" class="dropdown-toggle">
                             <div class="d-flex align-items-center justify-content-between">
@@ -278,6 +288,14 @@
                             </li>
                         </ul>
                     </li>
+                    <li class="menu {{ Str::is('admin/web*', request()->path()) ? 'active' : '' }}">
+                        <a href="{{ url('/admin/web') }}" aria-expanded="false" class="dropdown-toggle">
+                            <div class="d-flex align-items-center justify-content-between">
+                                <i class="fa-solid fa-gear" style="font-size: 20px; margin-right: 10px;" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ></i>
+                                <span>Web Settings</span>
+                            </div>
+                        </a>
+                    </li>
                     @endauth
 
 
@@ -316,7 +334,7 @@
 
             <div class="footer-wrapper">
                 <div class="footer-section f-section-1">
-                    <p class="">Copyright © <span class="dynamic-year"><?php echo date('Y')?></span> <a target="_blank" href="https://designreset.com/cork-admin/">Ifeta Dev</a>, All rights reserved.</p>
+                    <p class="">Copyright © <span class="dynamic-year"><?php echo date('Y')?></span> <a target="_blank" href="https://designreset.com/cork-admin/">{{ $web->web_dev }}</a>, All rights reserved.</p>
                 </div>
                 <div class="footer-section f-section-2">
                     <p class="">Coded with <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-heart"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg></p>

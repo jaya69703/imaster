@@ -29,14 +29,10 @@
                             <div class="form-group mt-2">
                                 <label for="position_id">Pilih Jabatan</label>
                                 <select name="position_id" id="position_id" class="form-select @error('position_id') is-invalid @enderror" name="name">
-                                    @if($user->position_id)
-                                    <option selected>{{ $user->position->name }}</option>
-                                    @else
+                                    <option selected value="{{ $user->position_id }}" >{{ $user->position->name }}</option>
                                     @foreach ( $position as $item )
-                                    <option selected disabled>Silahkan Pilih Jabatan</option>
                                     <option value="{{ $item->id }}">{{ $item->name }}</option>
                                     @endforeach
-                                    @endif
                                 </select>
                                 @error('position_id') <div class="invalid-feedback">{{ $message }}</div> @enderror
                             </div>
